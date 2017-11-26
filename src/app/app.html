@@ -1,10 +1,12 @@
-<main>
-  <h1 class="title">Hello from Angular !</h1>
+<md-toolbar class="md-hue-2">
+  <div class="md-toolbar-tools">
+    <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+      <i class="material-icons md-light">menu</i>
+    </md-button>
 
-  <!-- Images (and assets) are parsed and loaded from within the public directory -->
-  <img src="/img/logo.png">
-</main>
-<footer>
-  <a ng-href="{{app.url}}">Webpack Angular Starter</a>
-  <md-button class="md-raised md-warn">Warn</md-button>
-</footer>
+    <h2 flex md-truncate>My Fitness Plan</h2>
+  </div>
+</md-toolbar>
+
+<md-button ng-click="app.go()" class="md-raised md-primary">Primary</md-button>
+  

@@ -125,6 +125,14 @@ module.exports = function makeWebpackConfig() {
       // Allow loading html through js
       test: /\.html$/,
       loader: 'raw-loader'
+    },
+    {
+      test: /\.less$/,
+      use: [
+          'style-loader', // creates style nodes from JS strings
+          'css-loader', // translates CSS into CommonJS
+          'less-loader' // compiles Less to CSS
+      ]
     }]
   };
 

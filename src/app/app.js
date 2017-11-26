@@ -11,21 +11,62 @@ let app = () => {
   }
 };
 
-class AppCtrl {
-  constructor() {
-    this.url = 'https://github.com/preboot/angular-webpack';
+// class AppCtrl {
+//   constructor($scope, $mdToast) {
+//     this.url = 'https://github.com/preboot/angular-webpack';
+//   }
+// }
+
+AppCtrl.$inject = [
+  '$scope', 
+  '$rootScope', 
+  '$mdToast',
+  '$state'
+];
+function AppCtrl(
+  $scope, 
+  $rootScope, 
+  $mdToast,
+  $state
+) {
+  this.url = 'https://github.com/preboot/angular-webpack';
+
+  this.go = function(){
+    $state.go('home');
+    console.log('hellllo');
   }
-}
+};  
 
-const MODULE_NAME = 'app';
+AppConfig.$inject = [
+  '$stateProvider',
+  '$urlRouterProvider',
+  'stateHelperProvider'
+];
+function AppConfig(
+  $stateProvider, 
+  $urlRouterProvider,
+  stateHelperProvider
+) {
 
-angular.module(MODULE_NAME, [
+//   $stateProvider.state("home", {
+//     template: "<h1>HELLO!</h1>"
+// })
+
+  $urlRouterProvider.when(/^$/, '/home');
+  $urlRouterProvider.otherwise('/home');
+};
+
+// const MODULE_NAME = 'app';
+
+angular.module('app', [
   'ngMaterial',
   'ngAria',
   'ui.router',
   'ui.router.stateHelper',
-  'ngMessages'])
+  'ngMessages'
+])
   .directive('app', app)
-  .controller('AppCtrl', AppCtrl);
+  .controller('AppCtrl', AppCtrl)
+  .config(AppConfig);
 
-export default MODULE_NAME;
+// export default MODULE_NAME;
